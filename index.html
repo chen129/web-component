@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>web-component</title>
+    <link rel="import" href="template/HelloWorld.html">
+    <style>
+        .text {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <hello-world text="呵呵">
+        <span class="text" slot="text">change text</span>
+    </hello-world>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<template>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+    <div id="box">
+        <p class="box"><img src="img/default.png">
+            <slot class="red" name="text">Hello World</slot>
+        </p>
+    </div>
+</template>
+<script>
+  class HelloWorld extends HTMLElement {
+    constructor() {
+      // Always call super first in constructor
+      super();
+
+      // 创建 shadow root
+      let shadow = this.attachShadow({mode: 'open'});
+
+      // 获取template内容
+      let template = document.currentScript.ownerDocument.querySelector('template').content;
+
+      // 创建div 数据由自定义标签传入
+      const info = document.createElement('div');
+      const text = this.getAttribute('text');
+      info.setAttribute('class', 'info');
+      info.innerText = text;
+
+      //
+      template.children[1].appendChild(info);
+
+      // 复制节点
+      let clone = document.importNode(template, true);
+
+      // 将节点添加至shadow root 中
+      shadow.appendChild(clone);
+    }
+  }
+
+  // 定义新元素
+  customElements.define('hello-world', HelloWorld);
+</script>
